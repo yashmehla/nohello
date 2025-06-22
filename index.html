@@ -1,96 +1,279 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
-  </head>
-  <body>
-    <h1>Vercel HTML Starter</h1>
-    <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
-    </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-  </body>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>No Hello 👋 Just Ask</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif']
+          },
+          colors: {
+            glass: 'rgba(255, 255, 255, 0.05)'
+          }
+        }
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: radial-gradient(circle at center, #1e1e1e, #000);
+      overflow-x: hidden;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      border: 0.1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    }
+    .chat-bubble {
+      transition: all 0.3s ease;
+    }
+    #stars {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: transparent;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .cursor-circle {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      pointer-events: none;
+      mix-blend-mode: difference;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+    .light body {
+      background: radial-gradient(circle at top right, #fffad1 0%, #ffffff 80%);
+    }
+    .light .glass {
+      background: rgba(255, 255, 255, 0.35);
+      color: #111;
+      border: 0.1px solid rgba(0, 0, 0, 0.05);
+    }
+    .light .chat-bubble {
+      background-color: rgba(0, 0, 0, 0.05) !important;
+      color: #111;
+    }
+    .light ul li {
+      color: #222;
+    }
+    .sun {
+      position: absolute;
+      top: 100%;
+      left: -50px;
+      font-size: 2.5rem;
+      transition: all 2s ease-in-out;
+    }
+    .sun.rise {
+      top: 30px;
+      left: calc(100% - 80px);
+    }
+  </style>
+</head>
+<body class="font-sans text-white min-h-screen py-10 px-4 relative">
+  <canvas id="stars"></canvas>
+  <div class="cursor-circle" id="cursorCircle"></div>
+  <div id="sun" class="sun">🌞</div>
+
+  <div class="max-w-3xl mx-auto space-y-10 relative z-10">
+    <div class="flex justify-end gap-2">
+      <button id="modeToggle" class="text-xs text-gray-400 border border-gray-700 rounded px-3 py-1 hover:text-white">Toggle Light/Dark</button>
+    </div>
+
+    <h1 class="text-4xl font-semibold text-center text-indigo-400" id="heading">Stop Saying Hello 👋</h1>
+    <p class="text-center text-gray-400" id="subheading">Chat isn’t a phone call. Just ask your question. 🙃</p>
+
+    <div class="glass rounded-2xl p-6" id="chat-wrong">
+      <h2 class="text-xl font-semibold text-red-400 mb-4" id="wrong-title">❌ What Not to Do</h2>
+      <div class="space-y-3" id="wrong-chat-sequence"></div>
+    </div>
+
+    <div class="glass rounded-2xl p-6" id="chat-right">
+      <h2 class="text-xl font-semibold text-green-400 mb-4" id="right-title">✅ Do This Instead</h2>
+      <div class="space-y-3" id="right-chat-sequence"></div>
+    </div>
+
+    <div class="glass rounded-2xl p-6 space-y-4 text-sm">
+      <p id="desc1">It might feel polite to say "hi" and wait. But in chat, it's just a delay.</p>
+      <p id="desc2">Typing takes longer than talking. If someone is away, they can’t respond to “hi” — but they <em>can</em> reply to your full question later.</p>
+      <p id="desc3">Be polite, be direct:</p>
+      <ul class="list-disc list-inside text-gray-300">
+        <li>✅ <span id="example1">"Hey! Can you review my pull request?"</span></li>
+        <li>✅ <span id="example2">"Hi! When’s the deadline for the doc?"</span></li>
+        <li>✅ <span id="example3">"Hey Jamie — mind syncing on the deck update?"</span></li>
+      </ul>
+    </div>
+
+    <footer class="text-xs text-center text-gray-500 pt-10">
+      Inspired by <a href="https://nohello.com" class="underline hover:text-white">nohello.com</a> – open-source, remixable, and respectful.
+    </footer>
+  </div>
+
+  <audio id="snd-toggle" src="https://assets.mixkit.co/sfx/preview/mixkit-switch-click-1126.mp3"></audio>
+  <audio id="snd-send" src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3"></audio>
+
+  <script>
+    const toggle = document.getElementById("modeToggle");
+    const htmlEl = document.documentElement;
+    const sun = document.getElementById("sun");
+    const starsCanvas = document.getElementById('stars');
+    const cursorCircle = document.getElementById("cursorCircle");
+    const sndToggle = document.getElementById("snd-toggle");
+    const sndSend = document.getElementById("snd-send");
+
+    toggle.addEventListener("click", () => {
+      const isDark = htmlEl.classList.contains("dark");
+      htmlEl.classList.toggle("dark", !isDark);
+      htmlEl.classList.toggle("light", isDark);
+      sun.classList.toggle("rise", isDark);
+      starsCanvas.style.display = isDark ? "none" : "block";
+      sndToggle.play();
+    });
+
+    document.addEventListener("mousemove", e => {
+      cursorCircle.style.top = `${e.clientY}px`;
+      cursorCircle.style.left = `${e.clientX}px`;
+    });
+
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    let w, h;
+    function resizeCanvas() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const stars = Array(100).fill().map(() => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.2,
+      dx: (Math.random() - 0.5) * 0.5,
+      dy: (Math.random() - 0.5) * 0.5
+    }));
+
+    function drawStars() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = 'white';
+      stars.forEach(s => {
+        s.x += s.dx;
+        s.y += s.dy;
+        if (s.x < 0 || s.x > w) s.dx *= -1;
+        if (s.y < 0 || s.y > h) s.dy *= -1;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      requestAnimationFrame(drawStars);
+    }
+    drawStars();
+
+    function typeMessage(msg, container, callback) {
+      const wrapper = document.createElement('div');
+      wrapper.className = `flex items-start gap-3 ${msg.align === 'right' ? 'justify-end' : ''}`;
+      const bubble = document.createElement('div');
+      bubble.className = 'chat-bubble bg-white/10 px-4 py-2 rounded-xl max-w-[80%]';
+      const avatarImg = `<img class="w-10 h-10 rounded-full" src="${msg.avatar}" alt="${msg.sender}">`;
+      const chat = document.createElement('div');
+      chat.className = 'chat-bubble bg-white/10 px-4 py-2 rounded-xl max-w-[80%]';
+      wrapper.innerHTML = msg.align === 'right' ? `${chat.outerHTML}${avatarImg}` : `${avatarImg}${chat.outerHTML}`;
+      container.appendChild(wrapper);
+      const bubbleEl = wrapper.querySelector('.chat-bubble');
+      let i = 0;
+      const interval = setInterval(() => {
+        bubbleEl.textContent += msg.message[i];
+        i++;
+        if (i >= msg.message.length) {
+          clearInterval(interval);
+          sndSend.play();
+          if (callback) setTimeout(callback, 400);
+        }
+      }, 40);
+    }
+
+    const wrongSequence = [
+      { sender: 'Jamie', message: 'Hi', avatar: 'https://img.freepik.com/free-photo/portrait-smiling-blonde-woman_23-2148316635.jpg' },
+      { sender: 'Alex', message: '...?', avatar: 'https://img.freepik.com/premium-photo/fashion-model-more-poses-you-aset_891936-1864.jpg', align: 'right' },
+      { sender: 'Jamie', message: 'What time was that meeting again?', avatar: 'https://img.freepik.com/free-photo/portrait-smiling-blonde-woman_23-2148316635.jpg' }
+    ];
+
+    const rightSequence = [
+      { sender: 'Jamie', message: 'Hey! What time is that meeting again?', avatar: 'https://img.freepik.com/free-photo/portrait-smiling-blonde-woman_23-2148316635.jpg' },
+      { sender: 'Alex', message: '3:30 👍', avatar: 'https://img.freepik.com/premium-photo/fashion-model-more-poses-you-aset_891936-1864.jpg', align: 'right' }
+    ];
+
+    function renderSequence(seq, containerId) {
+      const container = document.getElementById(containerId);
+      let i = 0;
+      function next() {
+        if (i >= seq.length) return;
+        const msg = seq[i++];
+        typeMessage(msg, container, next);
+      }
+      next();
+    }
+
+    renderSequence(wrongSequence, 'wrong-chat-sequence');
+    renderSequence(rightSequence, 'right-chat-sequence');
+
+    const langToggle = document.getElementById("langToggle");
+    const langData = {
+      en: {
+        heading: "Stop Saying Hello 👋",
+        subheading: "Chat isn’t a phone call. Just ask your question. 🙃",
+        wrong: "❌ What Not to Do",
+        right: "✅ Do This Instead",
+        desc1: "It might feel polite to say \"hi\" and wait. But in chat, it's just a delay.",
+        desc2: "Typing takes longer than talking. If someone is away, they can’t respond to “hi” — but they can reply to your full question later.",
+        desc3: "Be polite, be direct:",
+        example1: "\"Hey! Can you review my pull request?\"",
+        example2: "\"Hi! When’s the deadline for the doc?\"",
+        example3: "\"Hey Jamie — mind syncing on the deck update?\""
+      },
+      es: {
+        heading: "Deja de decir Hola 👋",
+        subheading: "El chat no es una llamada. Solo haz tu pregunta. 🙃",
+        wrong: "❌ Qué No Hacer",
+        right: "✅ Haz Esto En Su Lugar",
+        desc1: "Puede parecer cortés decir \"hola\" y esperar. Pero en el chat, solo retrasa.",
+        desc2: "Escribir lleva más tiempo que hablar. Si alguien no está, no puede responder a \"hola\" — pero sí puede responder más tarde.",
+        desc3: "Sé educado, sé directo:",
+        example1: "\"¡Hola! ¿Puedes revisar mi solicitud de extracción?\"",
+        example2: "\"¡Hola! ¿Cuál es la fecha límite para el documento?\"",
+        example3: "\"Hola Jamie — ¿puedes revisar la presentación?\""
+      }
+    };
+
+    let currentLang = "en";
+    langToggle.addEventListener("click", () => {
+      currentLang = currentLang === "en" ? "es" : "en";
+      const d = langData[currentLang];
+      document.getElementById("heading").textContent = d.heading;
+      document.getElementById("subheading").textContent = d.subheading;
+      document.getElementById("wrong-title").textContent = d.wrong;
+      document.getElementById("right-title").textContent = d.right;
+      document.getElementById("desc1").textContent = d.desc1;
+      document.getElementById("desc2").textContent = d.desc2;
+      document.getElementById("desc3").textContent = d.desc3;
+      document.getElementById("example1").textContent = d.example1;
+      document.getElementById("example2").textContent = d.example2;
+      document.getElementById("example3").textContent = d.example3;
+      sndToggle.play();
+    });
+  </script>
+</body>
 </html>
